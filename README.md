@@ -2,13 +2,12 @@
 
 ## Versions
 
-Alpine : `3.6`   
-Kapacitor : `1.4.4`   
-Gosu : `1.10`
+Alpine : `3.7`   
+Kapacitor : `1.4.0`
 
 ## Commands
 
-Build : `docker build -t perriea/alpine-kapacitor .`   
-Pull : `docker pull perriea/alpine-kapacitor`   
+Build : `docker build -t perriea/alpine-kapacitor:3.7 .`   
+Pull : `docker pull perriea/alpine-kapacitor:3.7`   
 
-Run : `docker run -d -p 9092:9092 perriea/alpine-kapacitor`
+Run : `docker run -d -p 9092:9092 perriea/alpine-kapacitor:3.7`
