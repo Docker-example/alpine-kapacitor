@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  influxdb:
+    image: perriea/alpine-kapacitor:3.7
+    hostname: kapacitor
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 1
+        window: 120s
+      resources:
+        limits:
+          cpus: '10.000'
+          memory: 256M
+    volumes:
+      - influxdb_data:/var/lib/kapacitor
+    configs:
+      - source: config_kapacitor
+        target: /etc/kapacitor/kapacitor.conf
+    networks:
+      - internal_monitoring
+
+configs:
+  config_kapacitor:
+    file: configs/influxdb.conf
+  
+volumes:
+  kapacitor_data:
+
+networks:
+  internal_monitoring:
