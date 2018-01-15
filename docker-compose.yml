@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  kapacitor:
+    image: perriea/alpine-kapacitor:3.7
+    build: ./
+    hostname: kapacitor
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 1
+        window: 120s
+      resources:
+        limits:
+          cpus: '10.000'
+          memory: 256M
+    volumes:
+      - kapacitor_data:/var/lib/kapacitor
+    configs:
+      - source: config_kapacitor
+        target: /etc/kapacitor/kapacitor.conf
+    networks:
+      - internal_monitoring
+
+configs:
+  config_kapacitor:
+    file: configs/kapacitor.conf
+  
+volumes:
+  kapacitor_data:
+
+networks:
+  internal_monitoring:

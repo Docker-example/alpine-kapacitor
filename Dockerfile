@@ -19,7 +19,7 @@ ADD https://dl.influxdata.com/kapacitor/releases/kapacitor-${KAPACITOR_VERSION}-
 RUN addgroup kapacitor && \
     adduser -s /bin/false -G kapacitor -S -D kapacitor
 
-COPY files/kapacitor.conf /etc/kapacitor/kapacitor.conf
+# Coping scripts
 COPY scripts/start.sh start.sh
 
 # Extract archive
@@ -28,9 +28,9 @@ RUN tar -C ./ -xzf kapacitor-${KAPACITOR_VERSION}-static_linux_amd64.tar.gz && \
     chmod +x kapacitor-*/* && \
     cp -a kapacitor-*/* /usr/bin/ && \
     rm -rf *.tar.gz* kapacitor-*
-    
-EXPOSE 9092
 
-VOLUME /var/lib/kapacitor
+VOLUME [ "/var/lib/kapacitor" ]
+
+EXPOSE 9092
 
 ENTRYPOINT ["./start.sh"]
