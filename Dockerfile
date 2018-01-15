@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-LABEL MAINTAINER="Aurelien PERRIER <perrie_a@etna-alternance.net>"
+LABEL MAINTAINER="Aurelien PERRIER <a.perrier89@gmail.com>"
 LABEL APP="kapacitor"
 LABEL APP_VERSION="1.4.0"
 LABEL APP_REPOSITORY="https://github.com/influxdata/kapacitor/releases"
