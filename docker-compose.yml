@@ -1,8 +1,9 @@
 version: '3.4'
 
 services:
-  influxdb:
+  kapacitor:
     image: perriea/alpine-kapacitor:3.7
+    build: ./
     hostname: kapacitor
     deploy:
       restart_policy:
@@ -15,7 +16,7 @@ services:
           cpus: '10.000'
           memory: 256M
     volumes:
-      - influxdb_data:/var/lib/kapacitor
+      - kapacitor_data:/var/lib/kapacitor
     configs:
       - source: config_kapacitor
         target: /etc/kapacitor/kapacitor.conf
@@ -24,7 +25,7 @@ services:
 
 configs:
   config_kapacitor:
-    file: configs/influxdb.conf
+    file: configs/kapacitor.conf
   
 volumes:
   kapacitor_data:
